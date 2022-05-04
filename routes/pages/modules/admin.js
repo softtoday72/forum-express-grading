@@ -1,10 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const adminController = require('../../controllers/admin-controller')
-const categoryController = require('../../controllers/category-controller')
-const upload = require('../../middleware/multer')
+const adminController = require('../../../controllers/pages/admin-controller')
+const categoryController = require('../../../controllers/pages/category-controller')
+const upload = require('../../../middleware/multer')
 
 // 實際路由: '/admin/restaurant', render到 admin/restaurants.hbs
+// 路由路徑不受資料夾影響, 但受檔案影響 ex: admin.js裡面, 最前面路由路徑就會多一個admin
 router.get('/restaurants/create', adminController.createRestaurant)
 router.get('/restaurants/:id/edit', adminController.editRestaurant)
 router.get('/restaurants/:id', adminController.getRestaurant)
