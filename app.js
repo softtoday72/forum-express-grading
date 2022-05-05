@@ -7,7 +7,7 @@ const handlebarsHelpers = require('./helpers/handlebars-helpers')
 const { getUser } = require('./helpers/auth-helpers')
 const flash = require('connect-flash')
 const methodOverride = require('method-override')
-const { pages } = require('./routes')
+const { pages, apis } = require('./routes')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -31,6 +31,9 @@ app.use((req, res, next) => {
   res.locals.user = getUser(req)
   next()
 })
+
+// app.use('/api', apis) 這行條件比較嚴格，路徑多了 api 字串要比對，需要在 app.use(pages) 的前面。
+app.use('/api', apis)
 app.use(pages)
 
 app.listen(port, () => {
