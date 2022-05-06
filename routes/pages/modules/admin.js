@@ -5,7 +5,7 @@ const categoryController = require('../../../controllers/pages/category-controll
 const upload = require('../../../middleware/multer')
 
 // 實際路由: '/admin/restaurant', render到 admin/restaurants.hbs
-// 路由路徑不受資料夾影響, 但受檔案影響 ex: admin.js裡面, 最前面路由路徑就會多一個admin
+// 路由路徑不受資料夾影響, 但受route.use('/admin',admin)裡面的'/admin'影響, 最前面路由路徑就會多一個admin
 router.get('/restaurants/create', adminController.createRestaurant)
 router.get('/restaurants/:id/edit', adminController.editRestaurant)
 router.get('/restaurants/:id', adminController.getRestaurant)
